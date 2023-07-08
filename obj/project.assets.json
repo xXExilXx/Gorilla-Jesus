@@ -186,11 +186,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Exil_S\\Desktop\\Gorilla Jesus\\GorillaTagModTemplateProject.csproj",
+      "projectUniqueName": "G:\\Github rep\\Gorilla-Jesus\\GorillaTagModTemplateProject.csproj",
       "projectName": "GorillaTagModTemplateProject",
-      "projectPath": "C:\\Users\\Exil_S\\Desktop\\Gorilla Jesus\\GorillaTagModTemplateProject.csproj",
+      "projectPath": "G:\\Github rep\\Gorilla-Jesus\\GorillaTagModTemplateProject.csproj",
       "packagesPath": "C:\\Users\\Exil_S\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Exil_S\\Desktop\\Gorilla Jesus\\obj\\",
+      "outputPath": "G:\\Github rep\\Gorilla-Jesus\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
