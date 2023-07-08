@@ -29,13 +29,14 @@ namespace GorillaTagModTemplateProject
 
         void OnEnable()
         {
+            if (!inRoom)
+                return;
+
             SetWaterObjectsLayer("Default");
-            inRoom = true;
         }
         void OnDisable()
         {
             SetWaterObjectsLayer("Water");
-            inRoom = false;
         }
         private void SetWaterObjectsLayer(string layerName)
         {
