@@ -1,112 +1,54 @@
 ﻿using System;
-using System.Diagnostics;
+using System.ComponentModel;
 using BepInEx;
 using UnityEngine;
 using Utilla;
 
 namespace GorillaTagModTemplateProject
 {
-    [ModdedGamemode]
+    [Description("HauntedModMenu")]
     [BepInDependency("org.legoandmars.gorillatag.utilla")]
     [BepInPlugin(PluginInfo.GUID, PluginInfo.Name, PluginInfo.Version)]
     public class Plugin : BaseUnityPlugin
     {
-        bool inRoom;
-
-        void Start()
-        {
-            Utilla.Events.GameInitialized += OnGameInitialized;
-        }
-
-        void OnEnable()
-        {
-            HarmonyPatches.ApplyHarmonyPatches();
-        }
-
-        void OnDisable()
-        {
-            HarmonyPatches.RemoveHarmonyPatches();
-        }
-
-        void OnGameInitialized(object sender, EventArgs e)
-        {
-        }
-
-        void Update()
-        {
-        }
+        private bool inRoom;
 
         [ModdedGamemodeJoin]
         public void OnJoin(string gamemode)
         {
-            inRoom = true;
             SetWaterObjectsLayer("Default");
-            AddMeshCollidersToWaterObjects();
+            inRoom = true;
         }
 
         [ModdedGamemodeLeave]
         public void OnLeave(string gamemode)
         {
-            inRoom = false;
             SetWaterObjectsLayer("Water");
-            RemoveMeshCollidersFromWaterObjects();
+            inRoom = false;
         }
 
-        private void AddMeshCollidersToWaterObjects()
+        void OnEnable()
         {
-            if (!inRoom)
-                return;
-
-            // Get all objects with the layer "Water"
-            GameObject[] waterObjects = GameObject.FindGameObjectsWithTag("Water");
-
-            // Iterate through each water object
-            foreach (GameObject waterObject in waterObjects)
-            {
-                // Add mesh collider if not already present
-                if (waterObject.GetComponent<MeshCollider>() == null)
-                {
-                    MeshFilter meshFilter = waterObject.GetComponent<MeshFilter>();
-
-                    // Create mesh collider if a mesh filter component is present
-                    if (meshFilter != null && meshFilter.sharedMesh != null)
-                    {
-                        waterObject.AddComponent<MeshCollider>();
-                    }
-                    else
-                    {
-                        return;
-                    }
-                }
-            }
+            SetWaterObjectsLayer("Default");
+            inRoom = true;
         }
-
-        private void RemoveMeshCollidersFromWaterObjects()
+        void OnDisable()
         {
-            if (!inRoom)
-                return;
-
-            // Get all objects with the layer "Water"
-            GameObject[] waterObjects = GameObject.FindGameObjectsWithTag("Water");
-
-            // Iterate through each water object
-            foreach (GameObject waterObject in waterObjects)
-            {
-                // Remove mesh collider if present
-                MeshCollider meshCollider = waterObject.GetComponent<MeshCollider>();
-                if (meshCollider != null)
-                {
-                    Destroy(meshCollider);
-                }
-            }
+            SetWaterObjectsLayer("Water");
+            inRoom = false;
         }
-
         private void SetWaterObjectsLayer(string layerName)
         {
-            // Get all objects with the layer "Water"
-            GameObject[] waterObjects = GameObject.FindGameObjectsWithTag("Water");
+            GameObject[] waterObjects;
+            if (inRoom)
+            {
+                waterObjects = GameObject.FindGameObjectsWithTag("default");
+            }
+            else
+            {
+                waterObjects = GameObject.FindGameObjectsWithTag("Water");
+            }
 
-            // Iterate through each water object
             foreach (GameObject waterObject in waterObjects)
             {
                 waterObject.layer = LayerMask.NameToLayer(layerName);
