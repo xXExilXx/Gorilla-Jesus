@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "lm961iH9n77k1LcDoY1jnXT0pxc4D5s03HH8FpW1G3abyBjJuTZIsITW04QzSaWM60r8xeN7Ne1+jBPUS5d/bg==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Exil_S\\Desktop\\Gorilla Jesus\\Gorilla Jesus.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Exil_S\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\Exil_S\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}
